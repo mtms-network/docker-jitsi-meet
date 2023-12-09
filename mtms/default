@@ -1,7 +1,3 @@
-map $http_upgrade $type {
-  default "web";
-}
-
 server {
     listen 80;
     return 301 https://$host$request_uri;
@@ -15,7 +11,7 @@ server {
     ssl_certificate ~/docker-jitsi-meet/mtms/cert.fullchain;
     ssl_certificate_key ~/docker-jitsi-meet/mtms/cert.key;
 
-    location @web {
+    location / {
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
