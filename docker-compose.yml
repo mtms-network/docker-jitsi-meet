@@ -12,8 +12,7 @@ services:
             - ${CONFIG}/web:/config:Z
             - ${CONFIG}/web/crontabs:/var/spool/cron/crontabs:Z
             - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
-            - ./mtms/cert.fullchain:/config/keys/cert.crt
-            - ./mtms/cert.key:/config/keys/cert.key
+            - ./mtms/main-logo-horisontal.png:/usr/share/jitsi-meet/images/watermark.svg:Z
         environment:
             - AMPLITUDE_ID
             - ANALYTICS_SCRIPT_URLS
