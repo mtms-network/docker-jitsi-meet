@@ -12,7 +12,6 @@ services:
             - ${CONFIG}/web:/config:Z
             - ${CONFIG}/web/crontabs:/var/spool/cron/crontabs:Z
             - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
-            - ./mtms/main-logo-horisontal.png:/usr/share/jitsi-meet/images/watermark.svg
         environment:
             - AMPLITUDE_ID
             - ANALYTICS_SCRIPT_URLS
@@ -166,6 +165,8 @@ services:
             - XMPP_PORT
             - WHITEBOARD_ENABLED
             - WHITEBOARD_COLLAB_SERVER_PUBLIC_URL
+            - SHOW_BRAND_WATERMARK
+            - BRAND_WATERMARK_LINK
         networks:
             meet.jitsi:
 
