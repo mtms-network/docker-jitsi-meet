@@ -65,6 +65,7 @@
 {{ $WHITEBOARD_COLLAB_SERVER_PUBLIC_URL := .Env.WHITEBOARD_COLLAB_SERVER_PUBLIC_URL | default "" -}}
 {{ $WHITEBOARD_ENABLED := .Env.WHITEBOARD_ENABLED | default "false" | toBool -}}
 {{ $TESTING_AV1_SUPPORT := .Env.TESTING_AV1_SUPPORT | default "false" | toBool -}}
+{{ $BRAND_WATERMARK_LINK := .Env.BRAND_WATERMARK_LINK | default "" -}}
 
 // Video configuration.
 //
@@ -561,3 +562,6 @@ config.whiteboard = {
 config.testing = {
     enableAv1Support: {{ $TESTING_AV1_SUPPORT }}
 };
+
+// Brand watermark
+config.defaultLogoUrl = '{{ $BRAND_WATERMARK_LINK }}';
