@@ -66,6 +66,7 @@
 {{ $WHITEBOARD_ENABLED := .Env.WHITEBOARD_ENABLED | default "false" | toBool -}}
 {{ $TESTING_AV1_SUPPORT := .Env.TESTING_AV1_SUPPORT | default "false" | toBool -}}
 {{ $BRAND_WATERMARK_LINK := .Env.BRAND_WATERMARK_LINK | default "" -}}
+{{ $JITSI_WATERMARK_LINK := .Env.JITSI_WATERMARK_LINK | default "" -}}
 
 // Video configuration.
 //
@@ -563,5 +564,7 @@ config.testing = {
     enableAv1Support: {{ $TESTING_AV1_SUPPORT }}
 };
 
-// Brand watermark
-config.defaultLogoUrl = '{{ $BRAND_WATERMARK_LINK }}';
+
+{{ if .Env.BRAND_WATERMARK_LINK -}}
+config.defaultLogoUrl  = '{{ .Env.BRAND_WATERMARK_LINK }}';
+{{ end -}}
