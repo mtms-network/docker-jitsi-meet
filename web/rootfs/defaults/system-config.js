@@ -11,6 +11,8 @@
 {{ $XMPP_MUC_DOMAIN := .Env.XMPP_MUC_DOMAIN | default "muc.meet.jitsi" -}}
 {{ $XMPP_MUC_DOMAIN_PREFIX := (split "." $XMPP_MUC_DOMAIN)._0  -}}
 {{ $JVB_PREFER_SCTP := .Env.JVB_PREFER_SCTP | default "false" | toBool -}}
+{{ $BRAND_WATERMARK_LINK := .Env.BRAND_WATERMARK_LINK | default "" -}}
+{{ $JITSI_WATERMARK_LINK := .Env.JITSI_WATERMARK_LINK | default "" -}}
 
 // Jitsi Meet configuration.
 var config = {};
