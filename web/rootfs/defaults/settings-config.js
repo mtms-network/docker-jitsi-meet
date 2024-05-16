@@ -564,7 +564,3 @@ config.testing = {
     enableAv1Support: {{ $TESTING_AV1_SUPPORT }}
 };
 
-
-{{ if .Env.BRAND_WATERMARK_LINK -}}
-config.defaultLogoUrl  = '{{ .Env.BRAND_WATERMARK_LINK }}';
-{{ end -}}

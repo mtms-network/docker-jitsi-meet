@@ -72,3 +72,11 @@ config.bridgeChannel = {
     preferSctp: true
 };
 {{ end -}}
+
+{{ if $BRAND_WATERMARK_LINK -}}
+config.defaultLogoUrl  = '{{ $BRAND_WATERMARK_LINK }}';
+{{ end -}}
+
+{{ if $BRAND_WATERMARK_URL -}}
+config.logoUrl = '{{ $BRAND_WATERMARK_URL }}';
+{{ end -}}
