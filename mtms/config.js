@@ -1,10 +1,10 @@
 // Jitsi Meet configuration.
-var customConfig = {};
+var config = {};
 
-customConfig.hosts = {};
+config.hosts = {};
 
-customConfig.hosts.domain = 'meet.jitsi';
-customConfig.focusUserJid = 'focus@auth.meet.jitsi';
+config.hosts.domain = 'meet.jitsi';
+config.focusUserJid = 'focus@auth.meet.jitsi';
 
 var subdir = '';
 var subdomain = '';
@@ -14,25 +14,25 @@ if (subdir.startsWith('<!--')) {
 if (subdomain) {
     subdomain = subdomain.substring(0,subdomain.length-1).split('.').join('_').toLowerCase() + '.';
 }
-customConfig.hosts.muc = 'muc.' + subdomain + 'meet.jitsi';
-customConfig.bosh = 'https://player.globoroom.com/' + subdir + 'http-bind';
-customConfig.websocket = 'wss://player.globoroom.com/' + subdir + 'xmpp-websocket';
+config.hosts.muc = 'muc.' + subdomain + 'meet.jitsi';
+config.bosh = 'https://player.globoroom.com/' + subdir + 'http-bind';
+config.websocket = 'wss://player.globoroom.com/' + subdir + 'xmpp-websocket';
 
 // Video configuration.
 //
 
-customConfig.resolution = 720;
-customConfig.constraints = {
+config.resolution = 720;
+config.constraints = {
     video: {
         height: { ideal: 720, max: 720, min: 180 },
         width: { ideal: 1280, max: 1280, min: 320},
     }
 };
 
-customConfig.startVideoMuted = 10;
-customConfig.startWithVideoMuted = false;
+config.startVideoMuted = 10;
+config.startWithVideoMuted = false;
 
-customConfig.flags = {
+config.flags = {
     sourceNameSignaling: true,
     sendMultipleVideoStreams: true,
     receiveMultipleVideoStreams: true
@@ -44,27 +44,27 @@ customConfig.flags = {
 // Audio configuration.
 //
 
-customConfig.enableNoAudioDetection = true;
-customConfig.enableTalkWhileMuted = false;
-customConfig.disableAP = false;
+config.enableNoAudioDetection = true;
+config.enableTalkWhileMuted = false;
+config.disableAP = false;
 
-customConfig.audioQuality = {
+config.audioQuality = {
     stereo: false
 };
 
-customConfig.startAudioOnly = false;
-customConfig.startAudioMuted = 10;
-customConfig.startWithAudioMuted = false;
-customConfig.startSilent = false;
-customConfig.enableOpusRed = false;
-customConfig.disableAudioLevels = false;
-customConfig.enableNoisyMicDetection = true;
+config.startAudioOnly = false;
+config.startAudioMuted = 10;
+config.startWithAudioMuted = false;
+config.startSilent = false;
+config.enableOpusRed = false;
+config.disableAudioLevels = false;
+config.enableNoisyMicDetection = true;
 
 
 // Peer-to-Peer options.
 //
 
-customConfig.p2p = {
+config.p2p = {
     enabled: true
 };
 
@@ -72,18 +72,18 @@ customConfig.p2p = {
 // Breakout Rooms
 //
 
-customConfig.hideAddRoomButton = false;
+config.hideAddRoomButton = false;
 
 
 // Etherpad
 //
 
-customConfig.etherpad_base = 'https://player.globoroom.com/etherpad/p/';
+config.etherpad_base = 'https://player.globoroom.com/etherpad/p/';
 // Recording.
 //
 
 // Local recording configuration.
-customConfig.localRecording = {
+config.localRecording = {
     disable: false,
     notifyAllParticipants: false,
     disableSelfRecording: false
@@ -93,7 +93,7 @@ customConfig.localRecording = {
 // Analytics.
 //
 
-customConfig.analytics = {};
+config.analytics = {};
 
 // Dial in/out services.
 //
@@ -102,7 +102,7 @@ customConfig.analytics = {};
 // Calendar service integration.
 //
 
-customConfig.enableCalendarIntegration = false;
+config.enableCalendarIntegration = false;
 
 // Invitation service.
 //
@@ -111,7 +111,7 @@ customConfig.enableCalendarIntegration = false;
 //
 
 // Prejoin page.
-customConfig.prejoinConfig = {
+config.prejoinConfig = {
     enabled: true,
 
     // Hides the participant name editing field in the prejoin screen.
@@ -120,28 +120,28 @@ customConfig.prejoinConfig = {
 
 // List of buttons to hide from the extra join options dropdown on prejoin screen.
 // Welcome page.
-customConfig.welcomePage = {
+config.welcomePage = {
     disabled: false
 };
 
 // Close page.
-customConfig.enableClosePage = false;
+config.enableClosePage = false;
 
 // Default language.
 // Require users to always specify a display name.
-customConfig.requireDisplayName = false;
+config.requireDisplayName = false;
 
 // Chrome extension banner.
 // Disables profile and the edit of all fields from the profile settings (display name and email)
-customConfig.disableProfile = false;
+config.disableProfile = false;
 
 // Room password (false for anything, number for max digits)
-customConfig.roomPasswordNumberOfDigits = false;
+config.roomPasswordNumberOfDigits = false;
 // Advanced.
 //
 
 // Transcriptions (subtitles and buttons can be configured in interface_config)
-customConfig.transcription = {
+config.transcription = {
     enabled: false,
     translationLanguages: [],
     translationLanguagesHead: ['en'],
@@ -155,34 +155,34 @@ customConfig.transcription = {
 // Deployment information.
 //
 
-customConfig.deploymentInfo = {};
+config.deploymentInfo = {};
 
 // Deep Linking
-customConfig.disableDeepLinking = false;
+config.disableDeepLinking = false;
 
 // P2P preferred codec
 // Video quality settings.
 //
 
-customConfig.videoQuality = {};
-customConfig.videoQuality.av1 = {};
+config.videoQuality = {};
+config.videoQuality.av1 = {};
 
-customConfig.videoQuality.h264 = {};
+config.videoQuality.h264 = {};
 
-customConfig.videoQuality.vp8 = {};
+config.videoQuality.vp8 = {};
 
-customConfig.videoQuality.vp9 = {};
+config.videoQuality.vp9 = {};
 
 // Reactions
-customConfig.disableReactions = false;
+config.disableReactions = false;
 
 // Polls
-customConfig.disablePolls = false;
+config.disablePolls = false;
 
 // Configure toolbar buttons
 // Hides the buttons at pre-join screen
 // Configure remote participant video menu
-customConfig.remoteVideoMenu = {
+config.remoteVideoMenu = {
     disabled: false,
     disableKick: false,
     disableGrantModerator: false,
@@ -190,22 +190,22 @@ customConfig.remoteVideoMenu = {
 };
 
 // Configure e2eping
-customConfig.e2eping = {
+config.e2eping = {
     enabled: false
 };
 
 
 
 // Settings for the Excalidraw whiteboard integration.
-customConfig.whiteboard = {
+config.whiteboard = {
     enabled: false,
     collabServerBaseUrl: ''
 };
 
 // Testing
-customConfig.testing = {
+config.testing = {
     enableAv1Support: false
 };
 
-customConfig.defaultLogoUrl = 'images/mtms-logo.png';
-customConfig.logoUrl = 'images/mtms-logo.png';
+config.defaultLogoUrl = 'images/mtms-logo.png';
+config.logoUrl = 'images/mtms-logo.png';
