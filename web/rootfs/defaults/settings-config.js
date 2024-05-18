@@ -71,8 +71,8 @@
 // Video configuration.
 //
 
-config.resolution = {{ $RESOLUTION }};
-config.constraints = {
+customConfig.resolution = {{ $RESOLUTION }};
+customConfig.constraints = {
     video: {
         height: { ideal: {{ $RESOLUTION }}, max: {{ $RESOLUTION }}, min: {{ $RESOLUTION_MIN }} },
         width: { ideal: {{ $RESOLUTION_WIDTH }}, max: {{ $RESOLUTION_WIDTH }}, min: {{ $RESOLUTION_WIDTH_MIN }}},
@@ -80,12 +80,12 @@ config.constraints = {
 };
 
 {{ if not $ENABLE_SIMULCAST -}}
-config.disableSimulcast = true;
+customConfig.disableSimulcast = true;
 {{ end -}}
-config.startVideoMuted = {{ $START_VIDEO_MUTED }};
-config.startWithVideoMuted = {{ $START_WITH_VIDEO_MUTED }};
+customConfig.startVideoMuted = {{ $START_VIDEO_MUTED }};
+customConfig.startWithVideoMuted = {{ $START_WITH_VIDEO_MUTED }};
 
-config.flags = {
+customConfig.flags = {
     sourceNameSignaling: true,
     sendMultipleVideoStreams: true,
     receiveMultipleVideoStreams: true
@@ -95,7 +95,7 @@ config.flags = {
 //
 
 {{ if not $DESKTOP_SHARING_FRAMERATE_AUTO -}}
-config.desktopSharingFrameRate = {
+customConfig.desktopSharingFrameRate = {
     min: {{ $DESKTOP_SHARING_FRAMERATE_MIN }},
     max: {{ $DESKTOP_SHARING_FRAMERATE_MAX }}
 };
@@ -104,31 +104,31 @@ config.desktopSharingFrameRate = {
 // Audio configuration.
 //
 
-config.enableNoAudioDetection = {{ $ENABLE_NO_AUDIO_DETECTION }};
-config.enableTalkWhileMuted = {{ $ENABLE_TALK_WHILE_MUTED }};
-config.disableAP = {{ not $ENABLE_AUDIO_PROCESSING }};
+customConfig.enableNoAudioDetection = {{ $ENABLE_NO_AUDIO_DETECTION }};
+customConfig.enableTalkWhileMuted = {{ $ENABLE_TALK_WHILE_MUTED }};
+customConfig.disableAP = {{ not $ENABLE_AUDIO_PROCESSING }};
 
-config.audioQuality = {
+customConfig.audioQuality = {
     stereo: {{ $ENABLE_STEREO }}
 };
 
 {{ if .Env.AUDIO_QUALITY_OPUS_BITRATE -}}
-config.audioQuality.opusMaxAverageBitrate = '{{ .Env.AUDIO_QUALITY_OPUS_BITRATE }}';
+customConfig.audioQuality.opusMaxAverageBitrate = '{{ .Env.AUDIO_QUALITY_OPUS_BITRATE }}';
 {{ end -}}
 
-config.startAudioOnly = {{ $START_AUDIO_ONLY }};
-config.startAudioMuted = {{ $START_AUDIO_MUTED }};
-config.startWithAudioMuted = {{ $START_WITH_AUDIO_MUTED }};
-config.startSilent = {{ $START_SILENT }};
-config.enableOpusRed = {{ $ENABLE_OPUS_RED }};
-config.disableAudioLevels = {{ $DISABLE_AUDIO_LEVELS }};
-config.enableNoisyMicDetection = {{ $ENABLE_NOISY_MIC_DETECTION }};
+customConfig.startAudioOnly = {{ $START_AUDIO_ONLY }};
+customConfig.startAudioMuted = {{ $START_AUDIO_MUTED }};
+customConfig.startWithAudioMuted = {{ $START_WITH_AUDIO_MUTED }};
+customConfig.startSilent = {{ $START_SILENT }};
+customConfig.enableOpusRed = {{ $ENABLE_OPUS_RED }};
+customConfig.disableAudioLevels = {{ $DISABLE_AUDIO_LEVELS }};
+customConfig.enableNoisyMicDetection = {{ $ENABLE_NOISY_MIC_DETECTION }};
 
 
 // Peer-to-Peer options.
 //
 
-config.p2p = {
+customConfig.p2p = {
     enabled: {{ $ENABLE_P2P }}
 };
 
@@ -136,16 +136,16 @@ config.p2p = {
 // Breakout Rooms
 //
 
-config.hideAddRoomButton = {{ $ENABLE_BREAKOUT_ROOMS | not }};
+customConfig.hideAddRoomButton = {{ $ENABLE_BREAKOUT_ROOMS | not }};
 
 
 // Etherpad
 //
 
 {{ if .Env.ETHERPAD_PUBLIC_URL -}}
-config.etherpad_base = '{{ .Env.ETHERPAD_PUBLIC_URL }}';
+customConfig.etherpad_base = '{{ .Env.ETHERPAD_PUBLIC_URL }}';
 {{ else if .Env.ETHERPAD_URL_BASE -}}
-config.etherpad_base = '{{ $PUBLIC_URL }}/etherpad/p/';
+customConfig.etherpad_base = '{{ $PUBLIC_URL }}/etherpad/p/';
 {{ end -}}
 
 
@@ -154,9 +154,9 @@ config.etherpad_base = '{{ $PUBLIC_URL }}/etherpad/p/';
 
 {{ if $ENABLE_RECORDING  -}}
 
-config.hiddenDomain = '{{ $XMPP_RECORDER_DOMAIN }}';
+customConfig.hiddenDomain = '{{ $XMPP_RECORDER_DOMAIN }}';
 
-config.recordingService = {
+customConfig.recordingService = {
     // Whether to enable file recording or not using the "service" defined by the finalizer in Jibri
     enabled: {{ $ENABLE_SERVICE_RECORDING }},
 
@@ -167,7 +167,7 @@ config.recordingService = {
 };
 
 // Live streaming configuration.
-config.liveStreaming = {
+customConfig.liveStreaming = {
     enabled: {{ $ENABLE_LIVESTREAMING }},
     dataPrivacyLink: '{{ $ENABLE_LIVESTREAMING_DATA_PRIVACY_LINK }}',
     helpLink: '{{ $ENABLE_LIVESTREAMING_HELP_LINK }}',
@@ -178,7 +178,7 @@ config.liveStreaming = {
 
 {{ if .Env.DROPBOX_APPKEY -}}
 // Enable the dropbox integration.
-config.dropbox = {
+customConfig.dropbox = {
     appKey: '{{ .Env.DROPBOX_APPKEY }}'
 };
 
@@ -186,14 +186,14 @@ config.dropbox = {
 // A URL to redirect the user to, after authenticating
 // by default uses:
 // 'https://jitsi-meet.example.com/static/oauth.html'
-config.dropbox.redirectURI = '{{ .Env.DROPBOX_REDIRECT_URI }}';
+customConfig.dropbox.redirectURI = '{{ .Env.DROPBOX_REDIRECT_URI }}';
 {{ end -}}
 {{ end -}}
 
 {{ end -}}
 
 // Local recording configuration.
-config.localRecording = {
+customConfig.localRecording = {
     disable: {{ $DISABLE_LOCAL_RECORDING }},
     notifyAllParticipants: {{ $ENABLE_LOCAL_RECORDING_NOTIFY_ALL_PARTICIPANT }},
     disableSelfRecording: {{ $ENABLE_LOCAL_RECORDING_SELF_START }}
@@ -203,35 +203,35 @@ config.localRecording = {
 // Analytics.
 //
 
-config.analytics = {};
+customConfig.analytics = {};
 
 {{ if .Env.AMPLITUDE_ID -}}
 // The Amplitude APP Key:
-config.analytics.amplitudeAPPKey = '{{ .Env.AMPLITUDE_ID }}';
+customConfig.analytics.amplitudeAPPKey = '{{ .Env.AMPLITUDE_ID }}';
 {{ end -}}
 
 {{ if .Env.GOOGLE_ANALYTICS_ID -}}
 // The Google Analytics Tracking ID:
-config.analytics.googleAnalyticsTrackingId = '{{ .Env.GOOGLE_ANALYTICS_ID }}';
+customConfig.analytics.googleAnalyticsTrackingId = '{{ .Env.GOOGLE_ANALYTICS_ID }}';
 {{ end -}}
 
 {{ if .Env.MATOMO_ENDPOINT -}}
 // Matomo endpoint:
-config.analytics.matomoEndpoint = '{{ .Env.MATOMO_ENDPOINT }}';
+customConfig.analytics.matomoEndpoint = '{{ .Env.MATOMO_ENDPOINT }}';
 {{ end -}}
 
 {{ if .Env.MATOMO_SITE_ID -}}
 // Matomo site ID:
-config.analytics.matomoSiteID = '{{ .Env.MATOMO_SITE_ID }}';
+customConfig.analytics.matomoSiteID = '{{ .Env.MATOMO_SITE_ID }}';
 {{ end -}}
 
 {{ if .Env.ANALYTICS_SCRIPT_URLS -}}
 // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
-config.analytics.scriptURLs = [ '{{ join "','" (splitList "," .Env.ANALYTICS_SCRIPT_URLS) }}' ];
+customConfig.analytics.scriptURLs = [ '{{ join "','" (splitList "," .Env.ANALYTICS_SCRIPT_URLS) }}' ];
 {{ end -}}
 
 {{ if .Env.ANALYTICS_WHITELISTED_EVENTS -}}
-config.analytics.whiteListedEvents = [ '{{ join "','" (splitList "," .Env.ANALYTICS_WHITELISTED_EVENTS) }}' ];
+customConfig.analytics.whiteListedEvents = [ '{{ join "','" (splitList "," .Env.ANALYTICS_WHITELISTED_EVENTS) }}' ];
 {{ end -}}
 
 
@@ -239,37 +239,37 @@ config.analytics.whiteListedEvents = [ '{{ join "','" (splitList "," .Env.ANALYT
 //
 
 {{ if $ENABLE_JAAS_COMPONENTS }}
-config.dialInConfCodeUrl = 'https://conference-mapper.jitsi.net/v1/access';
-config.dialInNumbersUrl = 'https://conference-mapper.jitsi.net/v1/access/dids';
+customConfig.dialInConfCodeUrl = 'https://conference-mapper.jitsi.net/v1/access';
+customConfig.dialInNumbersUrl = 'https://conference-mapper.jitsi.net/v1/access/dids';
 {{ else }}
 {{ if .Env.CONFCODE_URL -}}
-config.dialInConfCodeUrl = '{{ .Env.CONFCODE_URL }}';
+customConfig.dialInConfCodeUrl = '{{ .Env.CONFCODE_URL }}';
 {{ end -}}
 {{ if .Env.DIALIN_NUMBERS_URL -}}
-config.dialInNumbersUrl = '{{ .Env.DIALIN_NUMBERS_URL }}';
+customConfig.dialInNumbersUrl = '{{ .Env.DIALIN_NUMBERS_URL }}';
 {{ end -}}
 {{ end -}}
 
 {{ if .Env.DIALOUT_AUTH_URL -}}
-config.dialOutAuthUrl = '{{ .Env.DIALOUT_AUTH_URL }}';
+customConfig.dialOutAuthUrl = '{{ .Env.DIALOUT_AUTH_URL }}';
 {{ end -}}
 
 {{ if .Env.DIALOUT_CODES_URL -}}
-config.dialOutCodesUrl = '{{ .Env.DIALOUT_CODES_URL }}';
+customConfig.dialOutCodesUrl = '{{ .Env.DIALOUT_CODES_URL }}';
 {{ end -}}
 
 
 // Calendar service integration.
 //
 
-config.enableCalendarIntegration = {{ $ENABLE_CALENDAR }};
+customConfig.enableCalendarIntegration = {{ $ENABLE_CALENDAR }};
 
 {{ if .Env.GOOGLE_API_APP_CLIENT_ID -}}
-config.googleApiApplicationClientID = '{{ .Env.GOOGLE_API_APP_CLIENT_ID }}';
+customConfig.googleApiApplicationClientID = '{{ .Env.GOOGLE_API_APP_CLIENT_ID }}';
 {{ end -}}
 
 {{ if .Env.MICROSOFT_API_APP_CLIENT_ID -}}
-config.microsoftApiApplicationClientID = '{{ .Env.MICROSOFT_API_APP_CLIENT_ID }}';
+customConfig.microsoftApiApplicationClientID = '{{ .Env.MICROSOFT_API_APP_CLIENT_ID }}';
 {{ end -}}
 
 
@@ -277,12 +277,12 @@ config.microsoftApiApplicationClientID = '{{ .Env.MICROSOFT_API_APP_CLIENT_ID }}
 //
 
 {{ if .Env.INVITE_SERVICE_URL -}}
-config.inviteServiceUrl = '{{ .Env.INVITE_SERVICE_URL }}';
+customConfig.inviteServiceUrl = '{{ .Env.INVITE_SERVICE_URL }}';
 {{ end -}}
 
 {{ if .Env.PEOPLE_SEARCH_URL -}}
-config.peopleSearchUrl = '{{ .Env.PEOPLE_SEARCH_URL }}';
-config.peopleSearchQueryTypes = ['user','conferenceRooms'];
+customConfig.peopleSearchUrl = '{{ .Env.PEOPLE_SEARCH_URL }}';
+customConfig.peopleSearchQueryTypes = ['user','conferenceRooms'];
 {{ end -}}
 
 
@@ -290,7 +290,7 @@ config.peopleSearchQueryTypes = ['user','conferenceRooms'];
 //
 
 // Prejoin page.
-config.prejoinConfig = {
+customConfig.prejoinConfig = {
     enabled: {{ $ENABLE_PREJOIN_PAGE }},
 
     // Hides the participant name editing field in the prejoin screen.
@@ -299,53 +299,53 @@ config.prejoinConfig = {
 
 // List of buttons to hide from the extra join options dropdown on prejoin screen.
 {{ if .Env.HIDE_PREJOIN_EXTRA_BUTTONS -}}
-config.prejoinConfig.hideExtraJoinButtons = [ '{{ join "','" (splitList "," .Env.HIDE_PREJOIN_EXTRA_BUTTONS) }}' ];
+customConfig.prejoinConfig.hideExtraJoinButtons = [ '{{ join "','" (splitList "," .Env.HIDE_PREJOIN_EXTRA_BUTTONS) }}' ];
 {{ end -}}
 
 // Welcome page.
-config.welcomePage = {
+customConfig.welcomePage = {
     disabled: {{ not $ENABLE_WELCOME_PAGE }}
 };
 
 // Close page.
-config.enableClosePage = {{ $ENABLE_CLOSE_PAGE }};
+customConfig.enableClosePage = {{ $ENABLE_CLOSE_PAGE }};
 
 // Default language.
 {{ if .Env.DEFAULT_LANGUAGE -}}
-config.defaultLanguage = '{{ .Env.DEFAULT_LANGUAGE }}';
+customConfig.defaultLanguage = '{{ .Env.DEFAULT_LANGUAGE }}';
 {{ end -}}
 
 // Require users to always specify a display name.
-config.requireDisplayName = {{ $ENABLE_REQUIRE_DISPLAY_NAME }};
+customConfig.requireDisplayName = {{ $ENABLE_REQUIRE_DISPLAY_NAME }};
 
 // Chrome extension banner.
 {{ if .Env.CHROME_EXTENSION_BANNER_JSON -}}
-config.chromeExtensionBanner = {{ .Env.CHROME_EXTENSION_BANNER_JSON }};
+customConfig.chromeExtensionBanner = {{ .Env.CHROME_EXTENSION_BANNER_JSON }};
 {{ end -}}
 
 // Disables profile and the edit of all fields from the profile settings (display name and email)
-config.disableProfile = {{ $DISABLE_PROFILE }};
+customConfig.disableProfile = {{ $DISABLE_PROFILE }};
 
 // Room password (false for anything, number for max digits)
 {{ if $ENABLE_JAAS_COMPONENTS -}}
-config.roomPasswordNumberOfDigits = 10;
+customConfig.roomPasswordNumberOfDigits = 10;
 {{ else -}}
-config.roomPasswordNumberOfDigits = {{ $ROOM_PASSWORD_DIGITS }};
+customConfig.roomPasswordNumberOfDigits = {{ $ROOM_PASSWORD_DIGITS }};
 {{ end -}}
 
 // Advanced.
 //
 
 {{ if not $ENABLE_REMB -}}
-config.enableRemb = false;
+customConfig.enableRemb = false;
 {{ end -}}
 {{ if not $ENABLE_TCC -}}
-config.enableTcc = false;
+customConfig.enableTcc = false;
 {{ end -}}
 
 
 // Transcriptions (subtitles and buttons can be configured in interface_config)
-config.transcription = {
+customConfig.transcription = {
     enabled: {{ $ENABLE_TRANSCRIPTIONS }},
     translationLanguages: {{ $TRANSLATION_LANGUAGES }},
     translationLanguagesHead: {{ $TRANSLATION_LANGUAGES_HEAD }},
@@ -358,180 +358,180 @@ config.transcription = {
 // Dynamic branding
 {{ if .Env.DYNAMIC_BRANDING_URL -}}
 // External API url used to receive branding specific information.
-config.dynamicBrandingUrl = '{{ .Env.DYNAMIC_BRANDING_URL }}';
+customConfig.dynamicBrandingUrl = '{{ .Env.DYNAMIC_BRANDING_URL }}';
 {{ else if .Env.BRANDING_DATA_URL  -}}
-config.brandingDataUrl = '{{ .Env.BRANDING_DATA_URL }}';
+customConfig.brandingDataUrl = '{{ .Env.BRANDING_DATA_URL }}';
 {{ end -}}
 
 {{ if .Env.TOKEN_AUTH_URL -}}
 // Authenticate using external service
-config.tokenAuthUrl = '{{ .Env.TOKEN_AUTH_URL }}';
+customConfig.tokenAuthUrl = '{{ .Env.TOKEN_AUTH_URL }}';
 {{ end -}}
 
 
 // Deployment information.
 //
 
-config.deploymentInfo = {};
+customConfig.deploymentInfo = {};
 
 {{ if .Env.DEPLOYMENTINFO_ENVIRONMENT -}}
-config.deploymentInfo.environment = '{{ .Env.DEPLOYMENTINFO_ENVIRONMENT }}';
+customConfig.deploymentInfo.environment = '{{ .Env.DEPLOYMENTINFO_ENVIRONMENT }}';
 {{ end -}}
 
 {{ if .Env.DEPLOYMENTINFO_SHARD -}}
-config.deploymentInfo.shard = '{{ .Env.DEPLOYMENTINFO_SHARD }}';
+customConfig.deploymentInfo.shard = '{{ .Env.DEPLOYMENTINFO_SHARD }}';
 {{ end -}}
 
 {{ if .Env.DEPLOYMENTINFO_ENVIRONMENT_TYPE -}}
-config.deploymentInfo.envType = '{{ .Env.DEPLOYMENTINFO_ENVIRONMENT_TYPE }}';
+customConfig.deploymentInfo.envType = '{{ .Env.DEPLOYMENTINFO_ENVIRONMENT_TYPE }}';
 {{ end -}}
 
 {{ if .Env.DEPLOYMENTINFO_REGION -}}
-config.deploymentInfo.region = '{{ .Env.DEPLOYMENTINFO_REGION }}';
+customConfig.deploymentInfo.region = '{{ .Env.DEPLOYMENTINFO_REGION }}';
 {{ end -}}
 
 {{ if $DEPLOYMENTINFO_USERREGION -}}
-config.deploymentInfo.userRegion = '{{ $DEPLOYMENTINFO_USERREGION }}';
+customConfig.deploymentInfo.userRegion = '{{ $DEPLOYMENTINFO_USERREGION }}';
 {{ end -}}
 
 // Deep Linking
-config.disableDeepLinking = {{ $DISABLE_DEEP_LINKING }};
+customConfig.disableDeepLinking = {{ $DISABLE_DEEP_LINKING }};
 
 // P2P preferred codec
 {{ if .Env.P2P_PREFERRED_CODEC -}}
-config.p2p.preferredCodec = '{{ .Env.P2P_PREFERRED_CODEC }}';
+customConfig.p2p.preferredCodec = '{{ .Env.P2P_PREFERRED_CODEC }}';
 {{ end -}}
 
 // Video quality settings.
 //
 
-config.videoQuality = {};
+customConfig.videoQuality = {};
 {{ if .Env.VIDEOQUALITY_PREFERRED_CODEC -}}
-config.videoQuality.preferredCodec = '{{ .Env.VIDEOQUALITY_PREFERRED_CODEC }}';
+customConfig.videoQuality.preferredCodec = '{{ .Env.VIDEOQUALITY_PREFERRED_CODEC }}';
 {{ end -}}
 
-config.videoQuality.av1 = {};
+customConfig.videoQuality.av1 = {};
 
 {{ if .Env.VIDEOQUALITY_BITRATE_AV1_LOW }}
-config.videoQuality.av1.low = {{ .Env.VIDEOQUALITY_BITRATE_AV1_LOW }};
+customConfig.videoQuality.av1.low = {{ .Env.VIDEOQUALITY_BITRATE_AV1_LOW }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_AV1_STANDARD }}
-config.videoQuality.av1.standard = {{ .Env.VIDEOQUALITY_BITRATE_AV1_STANDARD }};
+customConfig.videoQuality.av1.standard = {{ .Env.VIDEOQUALITY_BITRATE_AV1_STANDARD }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_AV1_HIGH }}
-config.videoQuality.av1.high = {{ .Env.VIDEOQUALITY_BITRATE_AV1_HIGH }};
+customConfig.videoQuality.av1.high = {{ .Env.VIDEOQUALITY_BITRATE_AV1_HIGH }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_AV1_FULL }}
-config.videoQuality.av1.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_AV1_FULL }};
+customConfig.videoQuality.av1.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_AV1_FULL }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_AV1_ULTRA }}
-config.videoQuality.av1.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_AV1_ULTRA }};
+customConfig.videoQuality.av1.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_AV1_ULTRA }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_AV1_SS_HIGH }}
-config.videoQuality.av1.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_AV1_SS_HIGH }};
+customConfig.videoQuality.av1.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_AV1_SS_HIGH }};
 {{ end -}}
 
-config.videoQuality.h264 = {};
+customConfig.videoQuality.h264 = {};
 
 {{ if .Env.VIDEOQUALITY_BITRATE_H264_LOW }}
-config.videoQuality.h264.low = {{ .Env.VIDEOQUALITY_BITRATE_H264_LOW }};
+customConfig.videoQuality.h264.low = {{ .Env.VIDEOQUALITY_BITRATE_H264_LOW }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_H264_STANDARD }}
-config.videoQuality.h264.standard = {{ .Env.VIDEOQUALITY_BITRATE_H264_STANDARD }};
+customConfig.videoQuality.h264.standard = {{ .Env.VIDEOQUALITY_BITRATE_H264_STANDARD }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_H264_HIGH }}
-config.videoQuality.h264.high = {{ .Env.VIDEOQUALITY_BITRATE_H264_HIGH }};
+customConfig.videoQuality.h264.high = {{ .Env.VIDEOQUALITY_BITRATE_H264_HIGH }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_H264_FULL }}
-config.videoQuality.h264.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_H264_FULL }};
+customConfig.videoQuality.h264.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_H264_FULL }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_H264_ULTRA }}
-config.videoQuality.h264.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_H264_ULTRA }};
+customConfig.videoQuality.h264.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_H264_ULTRA }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_H264_SS_HIGH }}
-config.videoQuality.h264.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_H264_SS_HIGH }};
+customConfig.videoQuality.h264.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_H264_SS_HIGH }};
 {{ end -}}
 
-config.videoQuality.vp8 = {};
+customConfig.videoQuality.vp8 = {};
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP8_LOW }}
-config.videoQuality.vp8.low = {{ .Env.VIDEOQUALITY_BITRATE_VP8_LOW }};
+customConfig.videoQuality.vp8.low = {{ .Env.VIDEOQUALITY_BITRATE_VP8_LOW }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP8_STANDARD }}
-config.videoQuality.vp8.standard = {{ .Env.VIDEOQUALITY_BITRATE_VP8_STANDARD }};
+customConfig.videoQuality.vp8.standard = {{ .Env.VIDEOQUALITY_BITRATE_VP8_STANDARD }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP8_HIGH }}
-config.videoQuality.vp8.high = {{ .Env.VIDEOQUALITY_BITRATE_VP8_HIGH }};
+customConfig.videoQuality.vp8.high = {{ .Env.VIDEOQUALITY_BITRATE_VP8_HIGH }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP8_FULL }}
-config.videoQuality.vp8.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_VP8_FULL }};
+customConfig.videoQuality.vp8.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_VP8_FULL }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP8_ULTRA }}
-config.videoQuality.vp8.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_VP8_ULTRA }};
+customConfig.videoQuality.vp8.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_VP8_ULTRA }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP8_SS_HIGH }}
-config.videoQuality.vp8.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_VP8_SS_HIGH }};
+customConfig.videoQuality.vp8.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_VP8_SS_HIGH }};
 {{ end -}}
 
-config.videoQuality.vp9 = {};
+customConfig.videoQuality.vp9 = {};
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP9_LOW }}
-config.videoQuality.vp9.low = {{ .Env.VIDEOQUALITY_BITRATE_VP9_LOW }};
+customConfig.videoQuality.vp9.low = {{ .Env.VIDEOQUALITY_BITRATE_VP9_LOW }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP9_STANDARD }}
-config.videoQuality.vp9.standard = {{ .Env.VIDEOQUALITY_BITRATE_VP9_STANDARD }};
+customConfig.videoQuality.vp9.standard = {{ .Env.VIDEOQUALITY_BITRATE_VP9_STANDARD }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP9_HIGH }}
-config.videoQuality.vp9.high = {{ .Env.VIDEOQUALITY_BITRATE_VP9_HIGH }};
+customConfig.videoQuality.vp9.high = {{ .Env.VIDEOQUALITY_BITRATE_VP9_HIGH }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP9_FULL }}
-config.videoQuality.vp9.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_VP9_FULL }};
+customConfig.videoQuality.vp9.fullHd = {{ .Env.VIDEOQUALITY_BITRATE_VP9_FULL }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP9_ULTRA }}
-config.videoQuality.vp9.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_VP9_ULTRA }};
+customConfig.videoQuality.vp9.ultraHd = {{ .Env.VIDEOQUALITY_BITRATE_VP9_ULTRA }};
 {{ end -}}
 
 {{ if .Env.VIDEOQUALITY_BITRATE_VP9_SS_HIGH }}
-config.videoQuality.vp9.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_VP9_SS_HIGH }};
+customConfig.videoQuality.vp9.ssHigh = {{ .Env.VIDEOQUALITY_BITRATE_VP9_SS_HIGH }};
 {{ end -}}
 
  // Reactions
-config.disableReactions = {{ $DISABLE_REACTIONS }};
+customConfig.disableReactions = {{ $DISABLE_REACTIONS }};
 
 // Polls
-config.disablePolls = {{ $DISABLE_POLLS }};
+customConfig.disablePolls = {{ $DISABLE_POLLS }};
 
 // Configure toolbar buttons
 {{ if .Env.TOOLBAR_BUTTONS -}}
-config.toolbarButtons = [ '{{ join "','" (splitList "," .Env.TOOLBAR_BUTTONS) }}' ];
+customConfig.toolbarButtons = [ '{{ join "','" (splitList "," .Env.TOOLBAR_BUTTONS) }}' ];
 {{ end -}}
 
 // Hides the buttons at pre-join screen
 {{ if .Env.HIDE_PREMEETING_BUTTONS -}}
-config.hiddenPremeetingButtons = [ '{{ join "','" (splitList "," .Env.HIDE_PREMEETING_BUTTONS) }}' ];
+customConfig.hiddenPremeetingButtons = [ '{{ join "','" (splitList "," .Env.HIDE_PREMEETING_BUTTONS) }}' ];
 {{ end -}}
 
 // Configure remote participant video menu
-config.remoteVideoMenu = {
+customConfig.remoteVideoMenu = {
     disabled: {{ $DISABLE_REMOTE_VIDEO_MENU }},
     disableKick: {{ $DISABLE_KICKOUT }},
     disableGrantModerator: {{ $DISABLE_GRANT_MODERATOR }},
@@ -539,28 +539,28 @@ config.remoteVideoMenu = {
 };
 
 // Configure e2eping
-config.e2eping = {
+customConfig.e2eping = {
     enabled: {{ $ENABLE_E2EPING }}
 };
 
 {{ if .Env.E2EPING_NUM_REQUESTS -}}
-config.e2eping.numRequests = {{ .Env.E2EPING_NUM_REQUESTS }};
+customConfig.e2eping.numRequests = {{ .Env.E2EPING_NUM_REQUESTS }};
 {{ end -}}
 {{ if .Env.E2EPING_MAX_CONFERENCE_SIZE -}}
-config.e2eping.maxConferenceSize = {{ .Env.E2EPING_MAX_CONFERENCE_SIZE }};
+customConfig.e2eping.maxConferenceSize = {{ .Env.E2EPING_MAX_CONFERENCE_SIZE }};
 {{ end -}}
 {{ if .Env.E2EPING_MAX_MESSAGE_PER_SECOND -}}
-config.e2eping.maxMessagePerSecond = {{ .Env.E2EPING_MAX_MESSAGE_PER_SECOND }};
+customConfig.e2eping.maxMessagePerSecond = {{ .Env.E2EPING_MAX_MESSAGE_PER_SECOND }};
 {{ end }}
 
 // Settings for the Excalidraw whiteboard integration.
-config.whiteboard = {
+customConfig.whiteboard = {
     enabled: {{ $WHITEBOARD_ENABLED }},
     collabServerBaseUrl: '{{ $WHITEBOARD_COLLAB_SERVER_PUBLIC_URL }}'
 };
 
 // Testing
-config.testing = {
+customConfig.testing = {
     enableAv1Support: {{ $TESTING_AV1_SUPPORT }}
 };
 
