@@ -13,7 +13,7 @@ services:
             - ${CONFIG}/web/crontabs:/var/spool/cron/crontabs:Z
             - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
             - ./mtms/mtms-logo.png:/usr/share/jitsi-meet/images/mtms-logo.png
-            - ./mtms/config.js:/defaults/custom-config.js
+            - .${CONFIG}/web/config.js:/defaults/custom-config.js
             - ./mtms/interface_config.js:/defaults/interface_config.js
         environment:
             - AMPLITUDE_ID
