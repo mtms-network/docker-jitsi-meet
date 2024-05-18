@@ -9,11 +9,10 @@ services:
             - '${HTTP_PORT}:80'
             - '${HTTPS_PORT}:443'
         volumes:
-            - ./web/configs:/config
+            - ./mtms/config.js:/config/config.js
             - ${CONFIG}/web/crontabs:/var/spool/cron/crontabs:Z
             - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
             - ./mtms/mtms-logo.png:/usr/share/jitsi-meet/images/mtms-logo.png
-            - ./mtms/config.js:/config/config.js
             - ./mtms/interface_config.js:/defaults/interface_config.js
         environment:
             - AMPLITUDE_ID
