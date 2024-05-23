@@ -112,7 +112,7 @@ config.enableCalendarIntegration = false;
 
 // Prejoin page.
 config.prejoinConfig = {
-    enabled: true,
+    enabled: false,
 
     // Hides the participant name editing field in the prejoin screen.
     hideDisplayName: false
