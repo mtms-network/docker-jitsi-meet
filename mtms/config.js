@@ -158,7 +158,7 @@ config.transcription = {
 config.deploymentInfo = {};
 
 // Deep Linking
-config.disableDeepLinking = false;
+config.disableDeepLinking = true;
 
 // P2P preferred codec
 // Video quality settings.
