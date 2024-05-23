@@ -201,7 +201,7 @@ var interfaceConfig = {
      */
     // APP_SCHEME: 'org.jitsi.meet',
 
-    // NATIVE_APP_NAME: 'Jitsi Meet',
+    NATIVE_APP_NAME: 'MTMS GloboRoom',
 
     /**
      * Specify Firebase dynamic link properties for the mobile apps.
