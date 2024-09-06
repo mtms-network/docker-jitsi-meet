@@ -15,6 +15,7 @@ services:
             - ./mtms/mtms-logo.png:/usr/share/jitsi-meet/images/mtms-logo.png
             - ./mtms/title.html:/usr/share/jitsi-meet/title.html
             - ./mtms/interface_config.js:/defaults/interface_config.js
+            - ./mtms/recordings:/usr/share/jitsi-meet/recordings:Z
         environment:
             - AMPLITUDE_ID
             - ANALYTICS_SCRIPT_URLS
